@@ -6,6 +6,10 @@ namespace ProjectName.Tests
   [TestClass]
   public class ClassNameTests
   {
-    // Tests will go here!
+    [TestMethod]
+    public void NameOfMethodWeAreTesting_DescriptionOfBehavior_ExpectedReturnValue()
+    {
+      // Tests will go here
+    }
   }
 }
