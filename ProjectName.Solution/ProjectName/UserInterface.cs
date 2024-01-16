@@ -7,7 +7,7 @@ namespace ExampleName
   {
     static void Main()
     {
-      // C# code goes here
+      Console.WriteLine("Hello World!");
     }
   }
 }

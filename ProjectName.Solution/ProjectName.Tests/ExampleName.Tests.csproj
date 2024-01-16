@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
 
     <IsPackable>false</IsPackable>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <!-- Change example name to fit project -->
-    <ProjectReference Include="..\ShapeTracker\ShapeTracker.csproj" />
+    <ProjectReference Include="..\ProjectName\ProjectName.csproj" />
   </ItemGroup>
 
 </Project>
