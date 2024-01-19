@@ -3,11 +3,9 @@
 
 ## Table of Contents
 - [About](#about)
-- [Demo](#demo)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [Known Bugs](#known-bugs)
 - [License](#license)
@@ -20,9 +18,6 @@ The primary functionality of the application is *FILL IN*...:
 - 
 - 
 - 
-
-## Demo
-You can try out the live demo of *PROJECT NAME* [here](https://tdietzel22.github.io/*PROJECTNAME*/).
 
 ## Technologies Used
 - **Language**: C#
