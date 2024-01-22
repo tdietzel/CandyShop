@@ -1,4 +1,4 @@
-# *PROJECT NAME*
+# *CSHARP Template README*
 #### By Trent Dietzel
 
 ## Table of Contents
