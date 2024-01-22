@@ -3,8 +3,8 @@
 
 ## Table of Contents
 - [About](#about)
-- [Technologies Used](#technologies-used)
 - [Features](#features)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [Known Bugs](#known-bugs)
@@ -16,8 +16,12 @@
 
 The primary functionality of the application is *FILL IN*...:
 - 
-- 
-- 
+-
+-
+
+## Features
+- **FEATURE**: 
+- **FEATURE**: 
 
 ## Technologies Used
 - **Language**: C#
@@ -27,10 +31,6 @@ The primary functionality of the application is *FILL IN*...:
 - **Version Control**: Git
 - **Testing**: MSTest
 - **Build Tool**: MSBuild
-
-## Features
-- **FEATURE**: 
-- **FEATURE**: 
 
 ## Installation
 
