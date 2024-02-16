@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 using Candy.Models;
 
 namespace Candy.Controllers
@@ -11,6 +15,55 @@ namespace Candy.Controllers
       _db = db;
     }
 
-    public ActionResult Index() { return View(); }
+    public ActionResult Index()
+    {
+      return View(_db.Treats.ToList());
+    }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+    [HttpPost]
+    public ActionResult Create(Treat treat)
+    {
+      _db.Treats.Add(treat);
+      _db.SaveChanges();
+
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Detail(int id)
+    {
+      Treat selectedTreat = _db.Treats
+        .Include(e => e.JoinEntities)
+        .ThenInclude(join => join.Flavor)
+      .FirstOrDefault(e => e.TreatId == id);
+
+      return View(selectedTreat);
+    }
+
+    public ActionResult Edit(int treatId)
+    {
+      return View(_db.Treats.Find(treatId));
+    }
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      _db.Treats.Update(treat);
+      _db.SaveChanges();
+
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult Delete(int treatId)
+    {
+      Treat selectedTreat = _db.Treats.Find(treatId);
+      _db.Treats.Remove(selectedTreat);
+      _db.SaveChanges();
+
+      return RedirectToAction("Index");
+    }
   }
 }
