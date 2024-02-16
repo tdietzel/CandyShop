@@ -3,15 +3,14 @@ using Candy.Models;
 
 namespace Candy.Controllers
 {
-  public class HomeController : Controller
+  public class TreatController : Controller
   {
     private readonly CandyShopContext _db;
-    public HomeController(CandyShopContext db)
+    public TreatController(CandyShopContext db)
     {
       _db = db;
     }
 
-    [Route("/")]
     public ActionResult Index() { return View(); }
   }
 }

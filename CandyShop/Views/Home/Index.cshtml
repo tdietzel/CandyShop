@@ -1,6 +1,4 @@
-@* @using System.Security.Claims
-@using CandyShop.Models
-@using CandyShop.ViewModels *@
+@using Candy.Models
 
 <!DOCTYPE html>
 <html>
@@ -14,19 +12,49 @@
     <meta charset='utf-8'>
   </head>
   <body>
-    @if (User.Identity.IsAuthenticated)
-    {
-      <h5>@User.Identity.Name</h5>
-      @using (Html.BeginForm("LogOff", "Account"))
+    <div style="text-align: right; margin-right: 1rem">
+      @if (User.Identity.IsAuthenticated)
       {
-        <input type="submit" value="Log Out" />
+        <h5>@User.Identity.Name</h5>
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+          <input type="submit" value="Log Out" />
+        }
       }
-    }
-    else
-    {
-      @Html.ActionLink("Register", "Register", "Account")
-      <p style="margin: 0;">or</p>
-      @Html.ActionLink("Login", "Login", "Account")
-    }
+      else
+      {
+          @Html.ActionLink("Register", "Register", "Account")
+          <p style="margin: 0;">or</p>
+          @Html.ActionLink("Login", "Login", "Account")
+      }
+    </div>
+    <hr />
+
+    <div style="text-align: center">
+      <h1>@Html.ActionLink("Treats", "Index", "Treat")</h1>
+      @if (Model["treats"].Length == 0)
+      {
+        <p>No treats have been added yet!</p>
+      }
+      else
+      {
+        @foreach(Treat treat in Model["treats"])
+        {
+          <p>@treat.Name</p>
+        }
+      }
+      <h1>Flavors</h1>
+      @if (Model["flavors"].Length == 0)
+      {
+        <p>No flavors have been added yet!</p>
+      }
+      else
+      {
+        @foreach(Flavor flavor in Model["flavors"])
+        {
+          <p>@flavor.Name</p>
+        }
+      }
+    </div>
   </body>
 </html>
