@@ -5,7 +5,13 @@ namespace Candy.Controllers
 {
   public class HomeController : Controller
   {
+    private readonly CandyShopContext _db;
+    public HomeController(CandyShopContext db)
+    {
+      _db = db;
+    }
+
     [Route("/")]
-    public string Home() { return View(); }
+    public ActionResult Index() { return View(); }
   }
 }
