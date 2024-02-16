@@ -23,6 +23,7 @@
         <h3>Description</h3>
         @Html.EditorFor(model => model.Description)
         <br />
+        <p style="margin: 0">@Html.ActionLink("Add Treat", "AddTreat", new { id = $"{@Model.FlavorId}"})</p>
         <input name="submit" type="submit" value="Save" id="submit" />
       }
       @using (Html.BeginForm("Delete", "Flavor", FormMethod.Post))

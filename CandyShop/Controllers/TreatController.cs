@@ -65,5 +65,37 @@ namespace Candy.Controllers
 
       return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public ActionResult AddFlavor(Treat treat, int flavorId)
+    {
+      #nullable enable
+      FlavorTreat? joinEntity = _db.FlavorTreats.FirstOrDefault(j => j.FlavorId == flavorId && j.TreatId == treat.TreatId);
+      #nullable disable
+
+      if (joinEntity == null && flavorId != 0)
+      {
+        _db.FlavorTreats.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Detail", new { id = treat.TreatId });
+    }
+    public ActionResult AddFlavor(int id)
+    {
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+
+      return View(_db.Treats.Find(id));
+    }
+
+    [HttpPost]
+    public ActionResult DeleteFlavor(int joinId)
+    {
+      FlavorTreat joinEntry = _db.FlavorTreats.Find(joinId);
+      _db.FlavorTreats.Remove(joinEntry);
+      _db.SaveChanges();
+
+      return RedirectToAction("Index");
+    }
   }
 }

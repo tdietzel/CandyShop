@@ -23,6 +23,7 @@
         <h3>Description</h3>
         @Html.EditorFor(model => model.Description)
         <br />
+        <p style="margin: 0">@Html.ActionLink("Add Flavor", "AddFlavor", new { id = $"{@Model.TreatId}"})</p>
         <input name="submit" type="submit" value="Save" id="submit" />
       }
       @using (Html.BeginForm("Delete", "Treat", FormMethod.Post))
@@ -30,8 +31,7 @@
         <input type="hidden" value="@Model.TreatId" name="treatId"/>
         <input name="submit" type="submit" value="Delete" />
       }
-
-      @Html.ActionLink("Go back to Treats", "Index")
+      <p>@Html.ActionLink("Go back to Treats", "Index")</p>
     </div>
   </body>
 </html>
