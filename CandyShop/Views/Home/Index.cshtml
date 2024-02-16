@@ -1,3 +1,7 @@
+@* @using System.Security.Claims
+@using CandyShop.Models
+@using CandyShop.ViewModels *@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,8 +14,19 @@
     <meta charset='utf-8'>
   </head>
   <body>
-    @Html.ActionLink("Register", "Register", "Account")
-    <p style="margin: 0;">or</p>
-    @Html.ActionLink("Login", "Login", "Account")
+    @if (User.Identity.IsAuthenticated)
+    {
+      <h5>@User.Identity.Name</h5>
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" value="Log Out" />
+      }
+    }
+    else
+    {
+      @Html.ActionLink("Register", "Register", "Account")
+      <p style="margin: 0;">or</p>
+      @Html.ActionLink("Login", "Login", "Account")
+    }
   </body>
 </html>
