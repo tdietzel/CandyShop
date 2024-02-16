@@ -1,5 +1,5 @@
 @using Candy.ViewModels
-@model RegisterViewModel
+@model LoginViewModel
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,8 @@
     <meta charset='utf-8'>
   </head>
   <body>
-    <h2>Create a Candy account</h2>
+    <h2>Sign in</h2>
+    <p>using your Candy account</p> 
     <hr />
 
     @if(!ViewData.ModelState.IsValid) 
@@ -23,20 +24,18 @@
       </div>
     }
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    @using (Html.BeginForm())
     {
-      @Html.LabelFor(user => user.Email)
-      @Html.TextBoxFor(user => user.Email)
+      @Html.LabelFor(m => m.Email)
+      @Html.TextBoxFor(m => m.Email)
 
-      @Html.LabelFor(user => user.Password)
-      @Html.EditorFor(user => user.Password)
+      @Html.LabelFor(m => m.Password)
+      @Html.EditorFor(m => m.Password)
 
-      @Html.LabelFor(user => user.ConfirmPassword)
-      @Html.EditorFor(user => user.ConfirmPassword)
-
-      <input type="submit" value="Register" />
+      <input type="submit" value="Log in" />
     }
-    <p>Already have an account? @Html.ActionLink("Sign in", "Login")</p>
+
+    <p>@Html.ActionLink("Create an account", "Register")</p>
     <p>@Html.ActionLink("Back to main page", "Index", "Home")</p>
   </body>
 </html>
