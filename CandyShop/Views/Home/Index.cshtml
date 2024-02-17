@@ -1,7 +1,7 @@
 @using Candy.Models
 
 <!DOCTYPE html>
-<html>
+<html style="margin: none; padding: none">
   <head>
     <title></title>
     <link 
@@ -53,31 +53,52 @@
         </ul>
       </div>
     </div>
-
-    <div style="text-align: center; background-color: #87CEEB; height: 90vh;">
-      <h1>@Html.ActionLink("Treats", "Index", "Treat")</h1>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; background-color: #87CEEB; height: 91.9vh;">
+      @* <h1>@Html.ActionLink("Treats", "Index", "Treat")</h1> *@
+      <h1 style="color: rgb(118, 117, 117)">Treats</h1>
       @if (Model["treats"].Length == 0)
       {
         <p>No treats have been added yet!</p>
       }
       else
       {
-        @foreach(Treat treat in Model["treats"])
-        {
-          <h5><li>@treat.Name</li></h5>
-        }
+        <div class="container">
+          <div class="row">
+            @foreach(Treat treat in Model["treats"])
+            {
+              <div class="col-md-2 mb-4">
+                <div class="card" style="background-color: #87CEEB; border: none">
+                  <div class="card-body" style="background-color: #b1b1fc; border: 4px solid purple; color: #800080">
+                    <h4 class="card-title">@treat.Name</h4>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
       }
-      <h1>@Html.ActionLink("Flavors", "Index", "Flavor")</h1>
+      @* <h1>@Html.ActionLink("Flavors", "Index", "Flavor")</h1> *@
+      <h1 style="color: rgb(118, 117, 117)">Flavors</h1>
       @if (Model["flavors"].Length == 0)
       {
         <p>No flavors have been added yet!</p>
       }
       else
       {
-        @foreach(Flavor flavor in Model["flavors"])
-        {
-          <h5><li>@flavor.Name</li></h5>
-        }
+        <div class="container">
+          <div class="row">
+            @foreach(Flavor flavor in Model["flavors"])
+            {
+              <div class="col-md-2 mb-4">
+                <div class="card" style="background-color: #87CEEB; border: none">
+                  <div class="card-body" style="background-color: #fe5b6e; border: 4px solid red; color: rgb(0, 255, 251); border-radius: 25px;">
+                    <h4 class="card-title">@flavor.Name</h4>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
       }
     </div>
   </body>
