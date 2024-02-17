@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -20,10 +21,12 @@ namespace Candy.Controllers
       return View(_db.Treats.ToList());
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       return View();
     }
+    [Authorize]
     [HttpPost]
     public ActionResult Create(Treat treat)
     {
@@ -43,10 +46,12 @@ namespace Candy.Controllers
       return View(selectedTreat);
     }
 
+    [Authorize]
     public ActionResult Edit(int treatId)
     {
       return View(_db.Treats.Find(treatId));
     }
+    [Authorize]
     [HttpPost]
     public ActionResult Edit(Treat treat)
     {
@@ -55,7 +60,8 @@ namespace Candy.Controllers
 
       return RedirectToAction("Index");
     }
-
+    
+    [Authorize]
     [HttpPost]
     public ActionResult Delete(int treatId)
     {
@@ -66,6 +72,7 @@ namespace Candy.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult AddFlavor(Treat treat, int flavorId)
     {
@@ -81,6 +88,7 @@ namespace Candy.Controllers
 
       return RedirectToAction("Detail", new { id = treat.TreatId });
     }
+    [Authorize]
     public ActionResult AddFlavor(int id)
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -88,6 +96,7 @@ namespace Candy.Controllers
       return View(_db.Treats.Find(id));
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult DeleteFlavor(int joinId)
     {
