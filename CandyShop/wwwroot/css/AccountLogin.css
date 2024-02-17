@@ -1,0 +1,40 @@
+body {
+  background: linear-gradient(to top, #c9c9ff 50%, #9090fa 90%) no-repeat;
+}
+.main-body {
+  height: 94.2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-background {
+  width: 30rem;
+  height: 40rem;
+  background-color: rgb(51, 51, 51);
+  border: 2px solid black;
+  border-radius: 1rem;
+  box-shadow: -5px 5px 15px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+form input {
+  margin-bottom: 1rem;
+}
+h2 {
+  color: #E0A2B4;
+}
+p {
+  color: white;
+}
+a {
+  color: #E0A2B4;
+}
+a:hover {
+  color: greenyellow;
+}
