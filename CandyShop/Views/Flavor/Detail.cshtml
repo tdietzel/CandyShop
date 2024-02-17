@@ -12,10 +12,73 @@
     <meta charset='utf-8'>
   </head>
   <body>
+    <div class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <div class="navbar-brand" style="text-align: center">@Model.Name Treats
+          @if (User.Identity.IsAuthenticated)
+          {
+            <div style="display: flex; flex-direction: row">
+              @using (Html.BeginForm("AddTreat", "Flavor", FormMethod.Get))
+              {
+                <input type="hidden" name="id" value="@Model.FlavorId" />
+                <input type="submit" value="Add Treat" style="padding: 4px; font-size: small; margin-left: 10px; background-color: grey; color: red"/>
+              }
+              @using (Html.BeginForm("Edit", "Flavor", FormMethod.Get))
+              {
+                <input type="hidden" name="flavorId" value="@Model.FlavorId" />
+                <input type="submit" value="Edit @Model.Name" style="padding: 4px; font-size: small; margin-left: 10px; background-color: grey; color: red"/>
+              }
+              @using (Html.BeginForm("Delete", "Flavor", FormMethod.Post))
+              {
+                <input type="hidden" name="flavorId" value="@Model.FlavorId" />
+                <input type="submit" value="Delete Flavor" style="padding: 4px; font-size: small; margin-left: 10px; background-color: grey; color: red"/>
+              }
+            </div>
+          }
+        </div>
+        <ul class="navbar-nav mr-auto" style="display: flex; flex-direction: row">
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink("Home Page |", "Index", "Home", null, new { @class = "nav-link" })
+            &nbsp;
+          </li>
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink(" Treats |", "Index", "Treat", null, new { @class = "nav-link" })
+            &nbsp;
+          </li>
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink("Flavors", "Index", "Flavor", null, new { @class = "nav-link" })
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            @if (User.Identity.IsAuthenticated)
+            {
+              <div style="display: flex; flex-direction: row">
+                <span class="navbar-text">@User.Identity.Name</span>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                  <button type="submit" class="btn btn-link text-white">Log Out</button>
+                }
+              </div>
+            }
+            else
+            {
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Account
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; background-color: grey; ">
+                  @Html.ActionLink("Register", "Register", "Account", null, new { @class = "dropdown-item" })
+                  @Html.ActionLink("Login", "Login", "Account", null, new { @class = "dropdown-item" })
+                </div>
+              </div>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div style="text-align: center">
-      <h1>About @Model.Name</h1>
-      <h3>Description: @Model.Description</h3>
-      <h3>Current Treats:</h3>
       @if (Model.JoinEntities.Count == 0)
       {
         <div style="display: flex; flex-direction: row; align-content: center; justify-content: center">
@@ -32,15 +95,9 @@
         {
           <li style="display: flex; align-items: center; justify-content: center; margin: 0">
             <h3>@join.Treat.Name</h3>
-            <form action="/Flavor/DeleteTreat" method="post" style="margin-left: 1rem;">
-              <input name="joinId" type="hidden" value="@join.FlavorTreatId" />
-              <button name="submit" type='submit' >Remove</button>
-            </form>
           </li>
         }
       }
-      <p style="margin: 0">@Html.ActionLink($"Edit {@Model.Name}", "Edit", new { flavorId = @Model.FlavorId })</p>
-      <p>@Html.ActionLink("Back", "Index")</p>
     </div>
   </body>
 </html>
