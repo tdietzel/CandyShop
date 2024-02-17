@@ -49,7 +49,14 @@ namespace Candy.Controllers
     [Authorize]
     public ActionResult Edit(int treatId)
     {
-      return View(_db.Treats.Find(treatId));
+      Treat selectedTreat = _db.Treats
+        .Include(e => e.JoinEntities)
+        .ThenInclude(join => join.Flavor)
+      .FirstOrDefault(e => e.TreatId == treatId);
+
+      ViewBag.Treat = _db.Treats.Find(treatId);
+
+      return View(selectedTreat);
     }
     [Authorize]
     [HttpPost]

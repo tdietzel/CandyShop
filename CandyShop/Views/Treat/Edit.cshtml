@@ -1,9 +1,10 @@
 @model Candy.Models.Treat
+@using Candy.Models
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Edit @Model.Name</title>
+    <title>Edit @ViewBag.Name</title>
     <link 
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
       rel="stylesheet" 
@@ -12,8 +13,55 @@
     <meta charset='utf-8'>
   </head>
   <body>
+    <div class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <div class="navbar-brand" style="display: flex; flex-direction: row">
+          Edit @ViewBag.Name
+        </div>
+        <ul class="navbar-nav mr-auto" style="display: flex; flex-direction: row">
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink("Home Page |", "Index", "Home", null, new { @class = "nav-link" })
+            &nbsp;
+          </li>
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink(" Treats |", "Index", "Treat", null, new { @class = "nav-link" })
+            &nbsp;
+          </li>
+          <li class="nav-item" style="display: flex; align-items: center; justify-content: center">
+            @Html.ActionLink("Flavors", "Index", "Flavor", null, new { @class = "nav-link" })
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            @if (User.Identity.IsAuthenticated)
+            {
+              <div style="display: flex; flex-direction: row">
+                <span class="navbar-text">@User.Identity.Name</span>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                  <button type="submit" class="btn btn-link text-white">Log Out</button>
+                }
+              </div>
+            }
+            else
+            {
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Account
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; background-color: grey; ">
+                  @Html.ActionLink("Register", "Register", "Account", null, new { @class = "dropdown-item" })
+                  @Html.ActionLink("Login", "Login", "Account", null, new { @class = "dropdown-item" })
+                </div>
+              </div>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div style="text-align: center">
-      <h1>Edit @Model.Name</h1>
+      <h1>Edit @ViewBag.Name</h1>
       @using (Html.BeginForm())
       {
         @Html.HiddenFor(model => model.TreatId)
@@ -23,15 +71,20 @@
         <h3>Description</h3>
         @Html.EditorFor(model => model.Description)
         <br />
-        <p style="margin: 0">@Html.ActionLink("Add Flavor", "AddFlavor", new { id = $"{@Model.TreatId}"})</p>
         <input name="submit" type="submit" value="Save" id="submit" />
       }
-      @using (Html.BeginForm("Delete", "Treat", FormMethod.Post))
+
+      <h1>Remove Flavors</h1>
+      @foreach(FlavorTreat join in @Model.JoinEntities)
       {
-        <input type="hidden" value="@Model.TreatId" name="treatId"/>
-        <input name="submit" type="submit" value="Delete" />
+        <li style="display: flex; align-items: center; justify-content: center; margin: 0">
+          <h3>@join.Flavor.Name</h3>
+          <form action="/Treat/DeleteFlavor" method="post" style="margin-left: 1rem;">
+            <input name="joinId" type="hidden" value="@join.FlavorTreatId" />
+            <button name="submit" type='submit'>Remove</button>
+          </form>
+        </li>
       }
-      <p>@Html.ActionLink("Go back to Treats", "Index")</p>
     </div>
   </body>
 </html>
