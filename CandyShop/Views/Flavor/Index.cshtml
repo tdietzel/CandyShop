@@ -68,19 +68,28 @@
       </div>
     </div>
 
-    <div style="text-align: center; background-color: #fe5b6e; height: 94.2vh;">
+    <div style="text-align: center; background-color: #fe5b6e; height: 93.8vh; padding-top: 1rem">
       @if (Model.Count == 0)
       {
         <h3>No flavors have been added yet!</h3>
       }
       else
       {
-        @foreach (Flavor flavor in Model)
-        {
-          <div style="text-align: center">
-            <h3 style="background-color: rgb(210, 207, 207); padding: .5rem; margin-bottom: 1rem;">@Html.ActionLink($"{@flavor.Name}", "Detail", new { id = flavor.FlavorId })</h3>
+        <div class="container">
+          <div class="row">
+            @foreach(Flavor flavor in Model)
+            {
+              <div class="col-md-12 mb-4">
+                <div class="card" style="background-color: #fe5b6e; border: none">
+                  <div class="card-body" style="background-color: grey; border: 4px solid black; border-radius: 20px; color: white">
+                    <h3>@Html.ActionLink($"{@flavor.Name}", "Detail", new { id = flavor.FlavorId }, new { style = "color: white" })</h3>
+                    <p>@flavor.Description</p>
+                  </div>
+                </div>
+              </div>
+            }
           </div>
-        }
+        </div>
       }
     </div>
   </body>

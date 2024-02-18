@@ -79,9 +79,6 @@
     </div>
 
     <div style="text-align: center">
-      @* <h1>About @Model.Name</h1>
-      <h3>Description: @Model.Description</h3> *@
-      @* <h3>@Model.Name Flavors:</h3> *@
       @if (Model.JoinEntities.Count == 0)
       {
         <div style="display: flex; flex-direction: row; align-content: center; justify-content: center">
@@ -101,8 +98,6 @@
           </li>
         }
       }
-      @* <p style="margin: 0">@Html.ActionLink($"Edit {@Model.Name}", "Edit", new { treatId = @Model.TreatId })</p> *@
-      @* <p>@Html.ActionLink("Back", "Index")</p> *@
     </div>
   </body>
 </html>

@@ -11,14 +11,18 @@
       crossorigin="anonymous">
     <meta charset='utf-8'>
   </head>
-  <body>
-    <h2>Add a Treat!</h2>
-    @using (Html.BeginForm())
-    {
-      <p>@Html.LabelFor(model => model.Name): @Html.TextBoxFor(model => model.Name, new {@required = "required"})</p>
-      <p>@Html.LabelFor(model => model.Description): @Html.TextBoxFor(model => model.Description, new {@required = "required"})</p>
-      <input name="submit" type="submit" value="Submit" />
-    }
-    @Html.ActionLink("Go back to Treats", "Index")
+  <body style="background-color: #b1b1fc">
+    <div style="text-align: center; display: flex; flex-direction: column; align-content: center; justify-content: center; height: 90vh">
+      <h2>Add a Treat!</h2>
+      @using (Html.BeginForm())
+      {
+        <input type="text" name="Name" placeholder="Name" required/>
+        <br />
+        <input type="text" name="Description" placeholder="Description" required />
+        <br />
+        <input class="btn btn-primary" name="submit" type="submit" value="Submit" />
+      }
+      @Html.ActionLink("Go back to Treats", "Index")
+    </div>
   </body>
 </html>

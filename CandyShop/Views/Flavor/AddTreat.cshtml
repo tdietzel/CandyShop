@@ -10,16 +10,18 @@
       crossorigin="anonymous">
     <meta charset='utf-8'>
   </head>
-  <body>
-    <h1>Add a new @Model.Name treat</h1>
+  <body style="background-color: #fe5b6e">
+    <div style="text-align: center; display: flex; flex-direction: column; align-content: center; justify-content: center; height: 90vh">
+      <h1>Add a new @Model.Name treat</h1>
 
-    @using (Html.BeginForm())
-    {
-      @Html.HiddenFor(model => model.FlavorId)
-      @Html.Label("Select Treat")
-      @Html.DropDownList("TreatId")
-      <input name="submit" type="submit" value="Submit" />
-    }
-    @Html.ActionLink($"Go back to details", "Detail", new { id = Model.FlavorId })
+      @using (Html.BeginForm())
+      {
+        @Html.HiddenFor(model => model.FlavorId)
+        @Html.Label("Select Treat")
+        @Html.DropDownList("TreatId")
+        <input class="btn btn-primary" name="submit" type="submit" value="Submit" />
+      }
+      @Html.ActionLink($"Go back to details", "Detail", new { id = Model.FlavorId })
+    </div>
   </body>
 </html>

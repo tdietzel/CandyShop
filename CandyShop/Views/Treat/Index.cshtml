@@ -67,7 +67,8 @@
         </ul>
       </div>
     </div>
-    <div style="text-align: center; background-color: #b1b1fc; height: 94.2vh;">
+    
+    <div style="text-align: center; background-color: #b1b1fc; height: 94.2vh; padding-top: 1rem">
       @if (Model.Count == 0)
       {
         <h3>No treats have been added yet!</h3>
@@ -75,12 +76,21 @@
       }
       else
       {
-        @foreach (Treat treat in Model)
-        {
-          <div style="text-align: center">
-            <h3 style="background-color: rgb(210, 207, 207); padding: .5rem; margin-bottom: 1rem;">@Html.ActionLink($"{@treat.Name}", "Detail", new { id = treat.TreatId })</h3>
+        <div class="container">
+          <div class="row">
+            @foreach(Treat treat in Model)
+            {
+              <div class="col-md-12 mb-4">
+                <div class="card" style="background-color: #b1b1fc; border: none">
+                  <div class="card-body" style="background-color: grey; border: 4px solid black; border-radius: 20px; color: white">
+                    <h3>@Html.ActionLink($"{@treat.Name}", "Detail", new { id = treat.TreatId }, new { style = "color: white" })</h3>
+                    <p>@treat.Description</p>
+                  </div>
+                </div>
+              </div>
+            }
           </div>
-        }
+        </div>
       }
     </div>
   </body>
