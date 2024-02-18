@@ -83,10 +83,6 @@
       {
         <div style="display: flex; flex-direction: row; align-content: center; justify-content: center">
           <h5>No current treats with this flavor</h5>
-          @using (Html.BeginForm("AddTreat", "Flavor", new { id = $"{@Model.FlavorId}" }, FormMethod.Get))
-          {
-            <input type="submit" name="submit" value="Add" style="margin-left: 1rem" />
-          }
         </div>
       }
       else

@@ -82,11 +82,7 @@
       @if (Model.JoinEntities.Count == 0)
       {
         <div style="display: flex; flex-direction: row; align-content: center; justify-content: center">
-          <h5>No current flavors</h5>
-          @using (Html.BeginForm("AddFlavor", "Treat", new { id = $"{@Model.TreatId}" }, FormMethod.Get))
-          {
-            <input type="submit" name="submit" value="Add" style="margin-left: 1rem" />
-          }
+          <h5>No current flavors with this treat</h5>
         </div>
       }
       else
